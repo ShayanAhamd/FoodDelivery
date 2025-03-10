@@ -2,187 +2,272 @@ import React from "react";
 import {
   View,
   Text,
-  FlatList,
   Image,
-  ImageBackground,
   TouchableOpacity,
   ScrollView,
   StyleSheet,
+  SafeAreaView,
+  TextInput,
 } from "react-native";
+import { Ionicons, MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 
-const categories = [
-  { id: 1, name: "Pizza", icon: "🍕" },
-  { id: 2, name: "Burger", icon: "🍔" },
-  { id: 3, name: "Drink", icon: "🍷" },
-  { id: 4, name: "Soup", icon: "🍲" },
-  { id: 5, name: "Shawarma", icon: "🌯" },
-  { id: 6, name: "Fries", icon: "🍟" },
-  { id: 7, name: "Pasta", icon: "🍝" },
-];
+const HomeScreen = ({ navigation }) => {
+  const categories = [
+    {
+      id: 1,
+      name: "Burgers",
+      icon: require("../../assets/burger.png"),
+    },
+    { id: 2, name: "Pizza", icon: require("../../assets/pizza.png") },
+    { id: 3, name: "Soups", icon: require("../../assets/sandwich.png") },
+    {
+      id: 4,
+      name: "Sandwiches",
+      icon: require("../../assets/sandwich.png"),
+    },
+  ];
 
-const popularItems = [
-  {
-    id: 1,
-    name: "Crown Crust Pizza",
-    time: "50 min",
-    price: "$12.99",
-    image: require("../../assets/pizza.png"),
-  },
-  {
-    id: 2,
-    name: "Deal 01",
-    time: "50 min",
-    price: "$12.99",
-    image: require("../../assets/deal.png"),
-  },
-  {
-    id: 3,
-    name: "Beaf Burger",
-    time: "50 min",
-    price: "$12.99",
-    image: require("../../assets/burger.png"),
-  },
-  {
-    id: 4,
-    name: "Club Sandwich",
-    time: "50 min",
-    price: "$12.99",
-    image: require("../../assets/sandwich.png"),
-  },
-  {
-    id: 5,
-    name: "Chicken 5 Pcs",
-    time: "50 min",
-    price: "$12.99",
-    image: require("../../assets/fried.png"),
-  },
-];
+  const deals = [
+    {
+      id: 1,
+      image: require("../../assets/burger.png"),
+      name: "burger 1",
+      price: "250",
+    },
+    {
+      id: 2,
+      image: require("../../assets/burger.png"),
+      name: "burger 2",
+      price: "750",
+    },
+  ];
 
-const Home = () => {
   return (
-    <ImageBackground
-      source={require("../../assets/background.jpg")}
-      style={styles.background}
-    >
-      {/* Overlay with Opacity */}
-      <View style={styles.overlay} />
+    <SafeAreaView style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {/* Hero Banner */}
+        <View style={styles.heroBanner}>
+          <Image
+            source={require("../../assets/pizza-banner.jpg")}
+            style={styles.bannerImage}
+            resizeMode="cover"
+          />
+          <View style={styles.bannerOverlay}>
+            <Text style={styles.bannerTitle}>Bacon Bliss Burger</Text>
+            <Text style={styles.bannerPrice}>Only for $8.00</Text>
+          </View>
+        </View>
 
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <View style={styles.container}>
-          {/* Category Section */}
-          <Text style={styles.sectionTitle}>Category</Text>
-          <View style={styles.categoryItemOuter}>
-            <FlatList
-              horizontal
-              data={categories}
-              keyExtractor={(item) => item.id.toString()}
-              renderItem={({ item }) => (
-                <TouchableOpacity style={styles.categoryItem}>
-                  <Text style={{ fontSize: 24 }}>{item.icon}</Text>
-                  <Text style={styles.categoryText}>{item.name}</Text>
-                </TouchableOpacity>
-              )}
-              showsHorizontalScrollIndicator={false}
-            />
+        {/* Categories Section */}
+        <View style={styles.sectionContainer}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Categories</Text>
           </View>
 
-          {/* Popular Items Section */}
-          <Text style={styles.sectionTitle}>Popular</Text>
-          <View style={styles.popularItemsContainer}>
-            {popularItems.map((item) => (
-              <View key={item.id} style={styles.popularItem}>
-                <Image source={item.image} style={styles.popularImage} />
-                <Text style={styles.popularText}>{item.name}</Text>
-                <Text style={styles.popularTime}>{item.time}</Text>
-                <Text style={styles.popularPrice}>{item.price}</Text>
-              </View>
+          <View style={styles.categoriesContainer}>
+            {categories.map((category) => (
+              <TouchableOpacity key={category.id} style={styles.categoryItem}>
+                <View style={styles.categoryIconContainer}>
+                  <Image source={category.icon} style={styles.categoryIcon} />
+                </View>
+                <Text style={styles.categoryName}>{category.name}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+
+        {/* Deals Section */}
+        <View style={styles.sectionContainer}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Deals</Text>
+            <TouchableOpacity>
+              <Text style={styles.viewAllText}>View All</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.dealsContainer}>
+            {deals.map((deal) => (
+              <TouchableOpacity key={deal.id} style={styles.dealItem}>
+                <Image source={deal.image} style={styles.dealImage} />
+                <Text style={styles.dealName}>{deal.name}</Text>
+                <Text style={styles.dealPrice}>{deal.price}</Text>
+              </TouchableOpacity>
             ))}
           </View>
         </View>
       </ScrollView>
-    </ImageBackground>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    resizeMode: "cover",
-  },
-  overlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "white",
-    opacity: 0.8,
-  },
-  scrollContainer: {
-    paddingBottom: 50, // Ensures scrollable space
-  },
   container: {
-    paddingTop: 40,
-    paddingHorizontal: 10,
-  },
-  input: {
     flex: 1,
-    marginLeft: 10,
+    backgroundColor: "#FFFFFF",
+  },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    backgroundColor: "#FF9800",
+  },
+  searchContainer: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
+    borderRadius: 30,
+    paddingHorizontal: 15,
+    height: 45,
+  },
+  searchIcon: {
+    marginRight: 10,
+  },
+  searchInput: {
+    flex: 1,
+    height: "100%",
+    fontSize: 16,
+    color: "#000000",
+  },
+  notificationButton: {
+    marginLeft: 15,
+  },
+  heroBanner: {
+    position: "relative",
+    height: 200,
+    marginHorizontal: 16,
+    marginTop: 16,
+    borderRadius: 16,
+    overflow: "hidden",
+  },
+  bannerImage: {
+    width: "100%",
+    height: "100%",
+  },
+  bannerOverlay: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: 16,
+  },
+  bannerTitle: {
+    color: "#FFFFFF",
+    fontSize: 28,
+    fontWeight: "bold",
+    textShadow: "0px 2px 4px rgba(0, 0, 0, 0.5)",
+  },
+  bannerPrice: {
+    color: "#FFFFFF",
+    fontSize: 18,
+    fontWeight: "500",
+    textShadow: "0px 2px 4px rgba(0, 0, 0, 0.5)",
+  },
+  sectionContainer: {
+    marginTop: 24,
+    paddingHorizontal: 16,
+  },
+  sectionHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 16,
   },
   sectionTitle: {
-    fontSize: 18,
-    paddingLeft: 20,
+    fontSize: 24,
     fontWeight: "bold",
-    marginVertical: 10,
+    color: "#333333",
   },
-  categoryItemOuter: {
-    marginLeft: 20,
+  viewAllText: {
+    fontSize: 16,
+    color: "#FF9800",
+    fontWeight: "bold",
+  },
+  categoriesContainer: {
+    flexWrap: "wrap",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   categoryItem: {
-    padding: 10,
-    marginRight: 10,
-    borderRadius: 10,
     alignItems: "center",
-    borderWidth: 1,
-    borderColor: "black",
-    width: 90,
-    backgroundColor: "#F9C12C",
+    marginBottom: 16,
+    width: "22%",
   },
-  categoryText: {
+  categoryIconContainer: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    backgroundColor: "#FFFFFF",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 8,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  categoryIcon: {
+    width: 36,
+    height: 36,
+    // tintColor: "#FF9800",
+  },
+  categoryName: {
     fontSize: 14,
-    marginTop: 5,
+    textAlign: "center",
+    color: "#333333",
   },
-  popularItemsContainer: {
+  dealsContainer: {
     flexDirection: "row",
-    flexWrap: "wrap",
     justifyContent: "space-between",
-    paddingHorizontal: 10,
   },
-  popularItem: {
-    width: "47%", // To ensure two items per row with spacing
-    marginBottom: 10,
-    padding: 10,
-    borderRadius: 15,
+  dealItem: {
+    width: "48%",
+    borderRadius: 12,
+    overflow: "hidden",
+    marginBottom: 16,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  dealImage: {
+    width: "100%",
+    height: 150,
+    borderRadius: 12,
+  },
+  bottomNav: {
+    flexDirection: "row",
+    justifyContent: "space-around",
     alignItems: "center",
-    borderWidth: 1,
-    borderColor: "black",
-    backgroundColor: "#fff",
+    height: 60,
+    borderTopWidth: 1,
+    borderTopColor: "#EEEEEE",
+    backgroundColor: "#FFFFFF",
   },
-  popularImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 10,
+  navItem: {
+    alignItems: "center",
+    justifyContent: "center",
   },
-  popularText: {
-    fontSize: 14,
-    fontWeight: "bold",
-    marginVertical: 5,
-  },
-  popularTime: {
+  navText: {
     fontSize: 12,
-    color: "gray",
+    marginTop: 4,
+    color: "#999999",
   },
-  popularPrice: {
-    fontSize: 14,
+  activeNavText: {
+    color: "#FF9800",
     fontWeight: "bold",
-    color: "#ff9800",
+  },
+  dealName: {
+    fontSize: 14,
+    paddingLeft: 10,
+  },
+  dealPrice: {
+    paddingLeft: 10,
+    color: "#FF9800",
+    fontSize: 14,
   },
 });
 
-export default Home;
+export default HomeScreen;

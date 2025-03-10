@@ -6,11 +6,13 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Text,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { TextInput } from "react-native-paper";
-import { MaterialIcons } from "@expo/vector-icons";
 
-const SignupScreen = ({ navigation }) => {
+const Signup = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,90 +27,103 @@ const SignupScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.logoContainer}>
-        <Image
-          source={require("../../assets/logo.png")}
-          style={styles.logo}
-          resizeMode="contain"
-        />
-      </View>
-
-      <Text style={styles.title}>Create a new account!</Text>
-
-      <View style={styles.inputContainer}>
-        <TextInput
-          label="Username"
-          value={username}
-          onChangeText={setUsername}
-          style={styles.input}
-          left={<TextInput.Icon icon="account" color="#999" />}
-          mode="outlined"
-          outlineColor="#ccc"
-          activeOutlineColor="#FF9800"
-        />
-
-        <TextInput
-          label="Email"
-          value={email}
-          onChangeText={setEmail}
-          style={styles.input}
-          left={<TextInput.Icon icon="email" color="#999" />}
-          mode="outlined"
-          outlineColor="#ccc"
-          activeOutlineColor="#FF9800"
-          keyboardType="email-address"
-          autoCapitalize="none"
-        />
-
-        <TextInput
-          label="Password"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry={!showPassword}
-          style={styles.input}
-          left={<TextInput.Icon icon="lock" color="#999" />}
-          right={
-            <TextInput.Icon
-              icon={showPassword ? "eye-off" : "eye"}
-              color="#999"
-              onPress={() => setShowPassword(!showPassword)}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.keyboardAvoidingView}
+      >
+        <ScrollView
+          contentContainerStyle={styles.scrollViewContent}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={styles.logoContainer}>
+            <Image
+              source={require("../../assets/logo.png")}
+              style={styles.logo}
+              resizeMode="contain"
             />
-          }
-          mode="outlined"
-          outlineColor="#ccc"
-          activeOutlineColor="#FF9800"
-        />
+          </View>
 
-        <TextInput
-          label="Confirm Password"
-          value={confirmPassword}
-          onChangeText={setConfirmPassword}
-          secureTextEntry={!showConfirmPassword}
-          style={styles.input}
-          left={<TextInput.Icon icon="lock" color="#999" />}
-          right={
-            <TextInput.Icon
-              icon={showConfirmPassword ? "eye-off" : "eye"}
-              color="#999"
-              onPress={() => setShowConfirmPassword(!showConfirmPassword)}
+          <Text style={styles.title}>Create a new account!</Text>
+
+          <View style={styles.inputContainer}>
+            <TextInput
+              label="Username"
+              value={username}
+              onChangeText={setUsername}
+              style={styles.input}
+              left={<TextInput.Icon icon="account" color="#999" />}
+              mode="outlined"
+              outlineColor="#ccc"
+              activeOutlineColor="#FF9800"
             />
-          }
-          mode="outlined"
-          outlineColor="#ccc"
-          activeOutlineColor="#FF9800"
-        />
-      </View>
 
-      <TouchableOpacity style={styles.registerButton} onPress={handleRegister}>
-        <Text style={styles.registerButtonText}>Register</Text>
-      </TouchableOpacity>
+            <TextInput
+              label="Email"
+              value={email}
+              onChangeText={setEmail}
+              style={styles.input}
+              left={<TextInput.Icon icon="email" color="#999" />}
+              mode="outlined"
+              outlineColor="#ccc"
+              activeOutlineColor="#FF9800"
+              keyboardType="email-address"
+              autoCapitalize="none"
+            />
 
-      <View style={styles.loginContainer}>
-        <Text style={styles.loginText}>Already have an account? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <Text style={styles.loginLink}>Login Here</Text>
-        </TouchableOpacity>
-      </View>
+            <TextInput
+              label="Password"
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry={!showPassword}
+              style={styles.input}
+              left={<TextInput.Icon icon="lock" color="#999" />}
+              right={
+                <TextInput.Icon
+                  icon={showPassword ? "eye-off" : "eye"}
+                  color="#999"
+                  onPress={() => setShowPassword(!showPassword)}
+                />
+              }
+              mode="outlined"
+              outlineColor="#ccc"
+              activeOutlineColor="#FF9800"
+            />
+
+            <TextInput
+              label="Confirm Password"
+              value={confirmPassword}
+              onChangeText={setConfirmPassword}
+              secureTextEntry={!showConfirmPassword}
+              style={styles.input}
+              left={<TextInput.Icon icon="lock" color="#999" />}
+              right={
+                <TextInput.Icon
+                  icon={showConfirmPassword ? "eye-off" : "eye"}
+                  color="#999"
+                  onPress={() => setShowConfirmPassword(!showConfirmPassword)}
+                />
+              }
+              mode="outlined"
+              outlineColor="#ccc"
+              activeOutlineColor="#FF9800"
+            />
+          </View>
+
+          <TouchableOpacity
+            style={styles.registerButton}
+            onPress={handleRegister}
+          >
+            <Text style={styles.registerButtonText}>Register</Text>
+          </TouchableOpacity>
+
+          <View style={styles.loginContainer}>
+            <Text style={styles.loginText}>Already have an account? </Text>
+            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+              <Text style={styles.loginLink}>Login Here</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -117,7 +132,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+  },
+  keyboardAvoidingView: {
+    flex: 1,
+  },
+  scrollViewContent: {
+    flexGrow: 1,
     padding: 16,
+    paddingBottom: 30,
   },
   logoContainer: {
     alignItems: "center",
@@ -169,4 +191,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignupScreen;
+export default Signup;

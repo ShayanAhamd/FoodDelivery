@@ -55,16 +55,18 @@ const ProfileStack = ({ navigation }) => (
     <Stack.Screen
       name="Login"
       options={{
-        headerShown: true,
+        headerShown: false,
         header: () => <Header navigation={navigation} title="Login" />,
       }}
       component={Login}
     />
     <Stack.Screen
-      name="SignupScreen"
+      name="Signup"
       options={{
-        headerShown: true,
+        headerShown: false,
         header: () => <Header navigation={navigation} title="Signup" />,
+        tabBarStyle: { display: "none" },
+        tabBarVisible: false,
       }}
       component={Signup}
     />
@@ -80,12 +82,12 @@ const BottomTabs = () => (
         if (route.name === "Home") iconName = "home";
         else if (route.name === "Orders") iconName = "list";
         else if (route.name === "Profile") iconName = "person";
-        return <Ionicons name={iconName} size={size} color={color} />;
+        return <Ionicons name={iconName} size={17} color={color} />;
       },
       tabBarActiveTintColor: "#F9C12C",
       tabBarInactiveTintColor: "#000",
-      tabBarStyle: { backgroundColor: "#f4f4f4", height: 60 },
-      tabBarLabelStyle: { fontSize: 14, fontWeight: "bold" },
+      tabBarStyle: { backgroundColor: "#f4f4f4", height: 50 },
+      tabBarLabelStyle: { fontSize: 10, fontWeight: "bold" },
       headerShown: false, // Hide default headers
     })}
   >

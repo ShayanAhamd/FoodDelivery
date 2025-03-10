@@ -12,8 +12,6 @@ const Header = () => {
   const notificationCount = 3;
   return (
     <View style={styles.header}>
-      {/* Title (Center) */}
-
       {/* Search Bar */}
       <View style={styles.searchBarOuter}>
         <View style={styles.searchBar}>
@@ -44,7 +42,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "#ffb039",
-    paddingVertical: 15,
     paddingHorizontal: 20,
     marginTop: 22,
   },
@@ -69,13 +66,14 @@ const styles = StyleSheet.create({
   },
   searchBarOuter: {
     paddingRight: 20,
+    width: "90%",
   },
   searchBar: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#fff",
     paddingHorizontal: 7,
-    paddingVertical: 5,
+    paddingVertical: 0,
     borderRadius: 20,
     marginVertical: 10,
   },
