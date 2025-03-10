@@ -19,10 +19,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.shayanahmad273.foodPlanet"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "fc1d5e83-d80c-4b5d-a01b-a0547800323a"
+      }
+    },
+    "owner": "shayanahmad273"
   }
 }
