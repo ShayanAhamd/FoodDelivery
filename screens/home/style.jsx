@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     color: "#FF9800",
     fontSize: 14,
   },
-  popularRow: {
+  favouriteRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 10,

@@ -8,15 +8,37 @@ import {
   Image,
 } from "react-native";
 import styles from "./style";
-import { Ionicons, MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
+import {
+  Ionicons,
+  MaterialIcons,
+  FontAwesome5,
+  Entypo,
+} from "@expo/vector-icons";
 
 const HomeScreen = ({ navigation }) => {
   const categories = [
-    { id: 1, name: "Burgers", icon: "fast-food", type: "Ionicons" },
+    { id: 1, name: "Soups", icon: "restaurant", type: "Ionicons" },
     { id: 2, name: "Pizza", icon: "local-pizza", type: "MaterialIcons" },
-    { id: 3, name: "Soups", icon: "restaurant", type: "MaterialIcons" },
-    { id: 4, name: "Sandwiches", icon: "hamburger", type: "FontAwesome5" },
-    { id: 5, name: "Rice", icon: "restaurant-menu", type: "MaterialIcons" },
+    { id: 3, name: "Burgers", icon: "hamburger", type: "FontAwesome5" },
+    {
+      id: 4,
+      name: "Fried Chicken",
+      icon: "drumstick-bite",
+      type: "FontAwesome5",
+    },
+    {
+      id: 5,
+      name: "Sandwiches",
+      icon: "bread-slice",
+      type: "MaterialCommunityIcons",
+    },
+    { id: 6, name: "Hot Drinks", icon: "coffee", type: "FontAwesome5" },
+    {
+      id: 7,
+      name: "Cold Drinks",
+      icon: "glass-martini-alt",
+      type: "FontAwesome5",
+    },
   ];
 
   // Deals mapped correctly to each category
@@ -27,21 +49,21 @@ const HomeScreen = ({ navigation }) => {
         image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeCacsKFVUFTWs2O_nNZ-liKRkUT8eU8zBHQ&s",
         name: "Classic Burger",
-        price: "250 Rs",
+        price: "250",
       },
       {
         id: 2,
         image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZdBZvTy7j_4VHavJJdqNHZvhjqK2jswnNtQ&s",
         name: "Cheese Burger",
-        price: "750 Rs",
+        price: "750",
       },
       {
         id: 3,
         image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZdBZvTy7j_4VHavJJdqNHZvhjqK2jswnNtQ&s",
         name: "Double Cheese Burger",
-        price: "1750 Rs",
+        price: "1750",
       },
     ],
     Pizza: [
@@ -50,21 +72,21 @@ const HomeScreen = ({ navigation }) => {
         image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkb8bnpzQOP0j7G7CFRtJgdI1K2cIVbV-aZQ&s",
         name: "Pepperoni Pizza",
-        price: "1200 Rs",
+        price: "1200",
       },
       {
         id: 5,
         image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqai2uMqz7lv7paTapP6BCRodFuGjP-aGCiw&s",
         name: "Margherita Pizza",
-        price: "1000 Rs",
+        price: "1000",
       },
       {
         id: 6,
         image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqai2uMqz7lv7paTapP6BCRodFuGjP-aGCiw&s",
         name: "Veggie Supreme Pizza",
-        price: "800 Rs",
+        price: "800",
       },
     ],
     Soups: [
@@ -73,21 +95,21 @@ const HomeScreen = ({ navigation }) => {
         image:
           "https://www.washingtonpost.com/resizer/B8KyY23GAXsTnpCDIzah7xN-HAA=/arc-anglerfish-washpost-prod-washpost/public/O2ODNLW4ZBFVDBJKIU56FURJYE.jpg",
         name: "Tomato Soup",
-        price: "300 Rs",
+        price: "300",
       },
       {
         id: 8,
         image:
           "https://cdn.loveandlemons.com/wp-content/uploads/2021/11/minestrone-soup-500x500.jpg",
         name: "Minestrone Soup",
-        price: "400 Rs",
+        price: "400",
       },
       {
         id: 9,
         image:
           "https://cdn.loveandlemons.com/wp-content/uploads/2021/11/minestrone-soup-500x500.jpg",
         name: "Special Minestrone Soup",
-        price: "600 Rs",
+        price: "600",
       },
     ],
     Sandwiches: [
@@ -96,21 +118,21 @@ const HomeScreen = ({ navigation }) => {
         image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtZjpbxxYDaHOCGKff0PM2Rxn2Omn6_2CILQ&s",
         name: "Club Sandwich",
-        price: "600 Rs",
+        price: "600",
       },
       {
         id: 11,
         image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXeQzfGA95Z4wiejenHhUei9U0BxCXViK0Bg&s",
         name: "Grilled Cheese Sandwich",
-        price: "450 Rs",
+        price: "450",
       },
       {
         id: 12,
         image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXeQzfGA95Z4wiejenHhUei9U0BxCXViK0Bg&s",
         name: "Deluxe Grilled Cheese",
-        price: "650 Rs",
+        price: "650",
       },
     ],
     Rice: [
@@ -119,40 +141,40 @@ const HomeScreen = ({ navigation }) => {
         image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoIycguxFgTpIN3L00tYQhJ2WkypXj5w_QkQ&s",
         name: "Biryani",
-        price: "800 Rs",
+        price: "800",
       },
       {
         id: 14,
         image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPB0SshjQzi37NckUqup-HIv1ULwgFFmJExg&s",
         name: "Fried Rice",
-        price: "650 Rs",
+        price: "650",
       },
       {
         id: 15,
         image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPB0SshjQzi37NckUqup-HIv1ULwgFFmJExg&s",
         name: "Special Fried Rice",
-        price: "350 Rs",
+        price: "350",
       },
     ],
   };
 
-  const populars = {
+  const favourite = {
     Burgers: [
       {
         id: 1,
         image:
           "https://www.themealdb.com/images/media/meals/vxuyrx1511302687.jpg",
         name: "Classic Burger",
-        price: "250 Rs",
+        price: "250",
       },
       {
         id: 2,
         image:
           "https://www.themealdb.com/images/media/meals/sxxpst1468569714.jpg",
         name: "Cheese Burger",
-        price: "750 Rs",
+        price: "750",
       },
     ],
     Pizza: [
@@ -161,14 +183,14 @@ const HomeScreen = ({ navigation }) => {
         image:
           "https://www.themealdb.com/images/media/meals/wtsvxx1511296896.jpg",
         name: "Pepperoni Pizza",
-        price: "1200 Rs",
+        price: "1200",
       },
       {
         id: 4,
         image:
           "https://www.themealdb.com/images/media/meals/x0lk931587671540.jpg",
         name: "Margherita Pizza",
-        price: "1000 Rs",
+        price: "1000",
       },
     ],
     Soups: [
@@ -177,14 +199,14 @@ const HomeScreen = ({ navigation }) => {
         image:
           "https://www.themealdb.com/images/media/meals/uuyrrx1487327597.jpg",
         name: "Tomato Soup",
-        price: "300 Rs",
+        price: "300",
       },
       {
         id: 6,
         image:
           "https://www.themealdb.com/images/media/meals/xrrtss1511815505.jpg",
         name: "Minestrone Soup",
-        price: "400 Rs",
+        price: "400",
       },
     ],
     Sandwiches: [
@@ -193,14 +215,14 @@ const HomeScreen = ({ navigation }) => {
         image:
           "https://www.themealdb.com/images/media/meals/xqvyqr1511638875.jpg",
         name: "Club Sandwich",
-        price: "600 Rs",
+        price: "600",
       },
       {
         id: 8,
         image:
           "https://www.themealdb.com/images/media/meals/vtqxtu1511639216.jpg",
         name: "Grilled Cheese",
-        price: "450 Rs",
+        price: "450",
       },
     ],
     Rice: [
@@ -208,13 +230,13 @@ const HomeScreen = ({ navigation }) => {
         id: 9,
         image: "https://www.themealdb.com/images/media/meals/1529442323.jpg",
         name: "Biryani",
-        price: "800 Rs",
+        price: "800",
       },
       {
         id: 10,
         image: "https://www.themealdb.com/images/media/meals/1529444113.jpg",
         name: "Fried Rice",
-        price: "650 Rs",
+        price: "650",
       },
     ],
   };
@@ -257,6 +279,8 @@ const HomeScreen = ({ navigation }) => {
                     ? Ionicons
                     : category.type === "MaterialIcons"
                     ? MaterialIcons
+                    : category.type === "Entypo"
+                    ? Entypo
                     : FontAwesome5;
 
                 return (
@@ -308,45 +332,54 @@ const HomeScreen = ({ navigation }) => {
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={styles.dealsContainer}>
               {allDeals[selectedCategory]?.map((deal) => (
-                <TouchableOpacity key={deal.id} style={styles.dealItem}>
+                <TouchableOpacity
+                  key={deal.id}
+                  style={styles.dealItem}
+                  onPress={() =>
+                    navigation.navigate("DetailScreen", { item: deal })
+                  }
+                >
                   <Image
-                    source={{ uri: deal.image }}
                     style={styles.dealImage}
+                    source={{ uri: deal.image }}
                   />
                   <Text style={styles.dealName}>{deal.name}</Text>
-                  <Text style={styles.dealPrice}>{deal.price}</Text>
+                  <Text style={styles.dealPrice}>{deal.price} RS</Text>
                 </TouchableOpacity>
               ))}
             </View>
           </ScrollView>
         </View>
 
-        {/* Popular Section */}
+        {/* favourite Section */}
         <View style={styles.sectionContainer}>
           <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Populars</Text>
+            <Text style={styles.sectionTitle}>Favourite</Text>
             <TouchableOpacity>
               <Text style={styles.viewAllText}>View All</Text>
             </TouchableOpacity>
           </View>
 
           <View style={styles.popularsContainer}>
-            {Object.values(populars)
+            {Object.values(favourite)
               .flat()
               .reduce((acc, curr, index, array) => {
                 if (index % 2 === 0) acc.push(array.slice(index, index + 2));
                 return acc;
               }, [])
               .map((row, rowIndex) => (
-                <View key={rowIndex} style={styles.popularRow}>
-                  {row.map((popular) => (
-                    <TouchableOpacity key={popular.id} style={styles.dealItem}>
+                <View key={rowIndex} style={styles.favouriteRow}>
+                  {row.map((favourite) => (
+                    <TouchableOpacity
+                      key={favourite.id}
+                      style={styles.dealItem}
+                    >
                       <Image
-                        source={{ uri: popular.image }}
+                        source={{ uri: favourite.image }}
                         style={styles.dealImage}
                       />
-                      <Text style={styles.dealName}>{popular.name}</Text>
-                      <Text style={styles.dealPrice}>{popular.price}</Text>
+                      <Text style={styles.dealName}>{favourite.name}</Text>
+                      <Text style={styles.dealPrice}>{favourite.price}</Text>
                     </TouchableOpacity>
                   ))}
                 </View>

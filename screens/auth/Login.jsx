@@ -87,7 +87,7 @@ const LoginScreen = ({ navigation }) => {
 
           <View style={styles.registerContainer}>
             <Text style={styles.registerText}>Don't have an account? </Text>
-            <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+            <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
               <Text style={styles.registerLink}>Register Here</Text>
             </TouchableOpacity>
           </View>
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   registerContainer: {
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 60,
+    marginTop: 20,
     position: "relative",
     bottom: 0,
   },

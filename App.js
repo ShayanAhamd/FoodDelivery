@@ -9,6 +9,7 @@ import Profile from "./screens/profile/Profile";
 import Login from "./screens/auth/Login";
 import Signup from "./screens/auth/Signup";
 import Header from "./common/Header";
+import DetailScreen from "./screens/detail/DetailScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -23,6 +24,14 @@ const HomeStack = ({ navigation }) => (
         header: () => <Header navigation={navigation} title="Home" />,
       }}
       component={Home}
+    />
+    <Stack.Screen
+      name="DetailScreen"
+      options={{
+        headerShown: true,
+        header: () => <Header navigation={navigation} title="Detail" />,
+      }}
+      component={DetailScreen}
     />
   </Stack.Navigator>
 );

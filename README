@@ -1,0 +1,19 @@
+<!-- To Create an android build -->
+
+first install npm EAS CLI
+
+## npm install -g eas-cli
+
+Then, log in to your Expo account
+
+## eas login
+
+Configure EAS for Your Project
+
+## eas init
+
+This will create an eas.json file in your project, which stores the build configuration.
+
+Build the APK
+
+## eas build -p android --profile preview
