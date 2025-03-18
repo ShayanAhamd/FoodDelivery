@@ -324,7 +324,14 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.sectionContainer}>
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>Deals</Text>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("CategoryScreen", {
+                  category: selectedCategory,
+                  allDeals: allDeals,
+                })
+              }
+            >
               <Text style={styles.viewAllText}>View All</Text>
             </TouchableOpacity>
           </View>
@@ -355,9 +362,6 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.sectionContainer}>
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>Favourite</Text>
-            <TouchableOpacity>
-              <Text style={styles.viewAllText}>View All</Text>
-            </TouchableOpacity>
           </View>
 
           <View style={styles.popularsContainer}>

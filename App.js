@@ -10,18 +10,19 @@ import Login from "./screens/auth/Login";
 import Signup from "./screens/auth/Signup";
 import Header from "./common/Header";
 import DetailScreen from "./screens/detail/DetailScreen";
+import CategoryScreen from "./screens/category/CategoryScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 // ✅ Home Stack with Custom Header
-const HomeStack = ({ navigation }) => (
-  <Stack.Navigator screenOptions={{ headerShown: false }}>
+const HomeStack = () => (
+  <Stack.Navigator>
     <Stack.Screen
       name="HomeScreen"
       options={{
         headerShown: true,
-        header: () => <Header navigation={navigation} title="Home" />,
+        header: () => <Header title="Home" />,
       }}
       component={Home}
     />
@@ -29,21 +30,29 @@ const HomeStack = ({ navigation }) => (
       name="DetailScreen"
       options={{
         headerShown: true,
-        header: () => <Header navigation={navigation} title="Detail" />,
+        header: () => <Header title="Detail" />,
       }}
       component={DetailScreen}
+    />
+    <Stack.Screen
+      name="CategoryScreen"
+      options={{
+        headerShown: true,
+        header: () => <Header title="Detail" />,
+      }}
+      component={CategoryScreen}
     />
   </Stack.Navigator>
 );
 
 // ✅ Orders Stack with Custom Header
-const OrdersStack = ({ navigation }) => (
-  <Stack.Navigator screenOptions={{ headerShown: false }}>
+const OrdersStack = () => (
+  <Stack.Navigator>
     <Stack.Screen
       name="OrdersScreen"
       options={{
         headerShown: true,
-        header: () => <Header navigation={navigation} title="Orders" />,
+        header: () => <Header title="Orders" />,
       }}
       component={Orders}
     />
@@ -51,34 +60,18 @@ const OrdersStack = ({ navigation }) => (
 );
 
 // ✅ Profile Stack with Login and Signup
-const ProfileStack = ({ navigation }) => (
-  <Stack.Navigator screenOptions={{ headerShown: false }}>
+const ProfileStack = () => (
+  <Stack.Navigator>
     <Stack.Screen
       name="ProfileScreen"
       options={{
         headerShown: true,
-        header: () => <Header navigation={navigation} title="Profile" />,
+        header: () => <Header title="Profile" />,
       }}
       component={Profile}
     />
-    <Stack.Screen
-      name="Login"
-      options={{
-        headerShown: false,
-        header: () => <Header navigation={navigation} title="Login" />,
-      }}
-      component={Login}
-    />
-    <Stack.Screen
-      name="Signup"
-      options={{
-        headerShown: false,
-        header: () => <Header navigation={navigation} title="Signup" />,
-        tabBarStyle: { display: "none" },
-        tabBarVisible: false,
-      }}
-      component={Signup}
-    />
+    <Stack.Screen name="Login" component={Login} />
+    <Stack.Screen name="Signup" component={Signup} />
   </Stack.Navigator>
 );
 
@@ -86,7 +79,7 @@ const ProfileStack = ({ navigation }) => (
 const BottomTabs = () => (
   <Tab.Navigator
     screenOptions={({ route }) => ({
-      tabBarIcon: ({ color, size }) => {
+      tabBarIcon: ({ color }) => {
         let iconName;
         if (route.name === "Home") iconName = "home";
         else if (route.name === "Orders") iconName = "list";
@@ -95,9 +88,9 @@ const BottomTabs = () => (
       },
       tabBarActiveTintColor: "#F9C12C",
       tabBarInactiveTintColor: "#000",
-      tabBarStyle: { backgroundColor: "#f4f4f4", height: 50 },
+      tabBarStyle: { backgroundColor: "#f4f4f4", height: 60 },
       tabBarLabelStyle: { fontSize: 10, fontWeight: "bold" },
-      headerShown: false, // Hide default headers
+      headerShown: false,
     })}
   >
     <Tab.Screen name="Home" component={HomeStack} />

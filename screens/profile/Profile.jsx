@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import {
   Text,
-  StyleSheet,
   View,
-  Image,
   TouchableOpacity,
   SafeAreaView,
-  StatusBar,
-  Dimensions,
   ScrollView,
 } from "react-native";
 import styles from "./style";
@@ -27,14 +23,14 @@ export default class Profile extends Component {
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={styles.loginButton}
-              onPress={() => this.props.navigation.navigate("Login")}
+              onPress={() => navigation.navigate("Login")}
             >
               <Text style={styles.loginButtonText}>LOG IN</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={styles.signupButton}
-              onPress={() => this.props.navigation.navigate("Signup")}
+              onPress={() => navigation.navigate("Signup")}
             >
               <Text style={styles.signupButtonText}>SIGN UP</Text>
             </TouchableOpacity>
