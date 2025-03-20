@@ -95,6 +95,8 @@ const styles = StyleSheet.create({
     boxShadow: "3px 2px 4px rgba(0, 0, 0, 0.3)",
     paddingBottom: 5,
     marginRight: 10,
+    marginLeft: 3,
+    backgroundColor: "#fff",
     elevation: 5,
   },
   dealImage: {
@@ -103,7 +105,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
-    resizeMode: "cover",
     backgroundColor: "#ccc",
   },
   dealName: {

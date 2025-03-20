@@ -349,6 +349,7 @@ const HomeScreen = ({ navigation }) => {
                   <Image
                     style={styles.dealImage}
                     source={{ uri: deal.image }}
+                    resizeMode="cover"
                   />
                   <Text style={styles.dealName}>{deal.name}</Text>
                   <Text style={styles.dealPrice}>{deal.price} RS</Text>
@@ -381,6 +382,7 @@ const HomeScreen = ({ navigation }) => {
                       <Image
                         source={{ uri: favourite.image }}
                         style={styles.dealImage}
+                        resizeMode="cover"
                       />
                       <Text style={styles.dealName}>{favourite.name}</Text>
                       <Text style={styles.dealPrice}>{favourite.price}</Text>
