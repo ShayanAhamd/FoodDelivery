@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   View,
   Text,
@@ -8,36 +7,34 @@ import {
   Image,
 } from "react-native";
 import styles from "./style";
-import {
-  Ionicons,
-  MaterialIcons,
-  FontAwesome5,
-  Entypo,
-} from "@expo/vector-icons";
+import React, { useState } from "react";
 
 const HomeScreen = ({ navigation }) => {
   const categories = [
-    { id: 1, name: "Soups", icon: "restaurant", type: "Ionicons" },
-    { id: 2, name: "Pizza", icon: "local-pizza", type: "MaterialIcons" },
-    { id: 3, name: "Burgers", icon: "hamburger", type: "FontAwesome5" },
+    {
+      id: 1,
+      name: "Soups",
+      source: require("../../assets/icons/soup.png"),
+    },
+    {
+      id: 3,
+      name: "Burgers",
+      source: require("../../assets/icons/burger.png"),
+    },
     {
       id: 4,
       name: "Fried Chicken",
-      icon: "drumstick-bite",
-      type: "FontAwesome5",
+      source: require("../../assets/icons/fried-chicken.png"),
     },
     {
       id: 5,
-      name: "Sandwiches",
-      icon: "bread-slice",
-      type: "MaterialCommunityIcons",
+      name: "Sandwichs",
+      source: require("../../assets/icons/sandwich.png"),
     },
-    { id: 6, name: "Hot Drinks", icon: "coffee", type: "FontAwesome5" },
     {
-      id: 7,
-      name: "Cold Drinks",
-      icon: "glass-martini-alt",
-      type: "FontAwesome5",
+      id: 6,
+      name: "Hot Drinks",
+      source: require("../../assets/icons/hot-drink.png"),
     },
   ];
 
@@ -268,54 +265,40 @@ const HomeScreen = ({ navigation }) => {
           </View>
 
           <ScrollView
-            horizontal={true}
+            horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{ paddingHorizontal: 10 }}
           >
             <View style={styles.categoriesContainer}>
-              {categories.map((category) => {
-                const IconComponent =
-                  category.type === "Ionicons"
-                    ? Ionicons
-                    : category.type === "MaterialIcons"
-                    ? MaterialIcons
-                    : category.type === "Entypo"
-                    ? Entypo
-                    : FontAwesome5;
-
-                return (
-                  <TouchableOpacity
-                    key={category.id}
+              {categories.map((category) => (
+                <TouchableOpacity
+                  key={category.id}
+                  style={[
+                    styles.categoryItem,
+                    selectedCategory === category.name
+                      ? styles.selectedCategory
+                      : styles.unSelectedCategory,
+                  ]}
+                  onPress={() => setSelectedCategory(category.name)}
+                >
+                  <View
                     style={[
-                      styles.categoryItem,
+                      styles.categoryIconContainer,
                       selectedCategory === category.name
-                        ? styles.selectedCategory
-                        : styles.unSelectedCategory,
+                        ? { backgroundColor: "#FF9800" }
+                        : { backgroundColor: "#fff" },
                     ]}
-                    onPress={() => setSelectedCategory(category.name)}
                   >
-                    <View
-                      style={[
-                        styles.categoryIconContainer,
-                        selectedCategory === category.name
-                          ? { backgroundColor: "#FF9800" }
-                          : { backgroundColor: "#fff" },
-                      ]}
-                    >
-                      <IconComponent
-                        name={category.icon}
-                        size={30}
-                        color={
-                          selectedCategory === category.name
-                            ? "#fff"
-                            : "#FF9800"
-                        }
-                      />
-                    </View>
-                    <Text style={styles.categoryName}>{category.name}</Text>
-                  </TouchableOpacity>
-                );
-              })}
+                    {/* Use Image Instead of Icon */}
+                    <Image
+                      source={category.source} // Corrected: Using category image source
+                      style={styles.categoryImage} // Make sure to define this in styles
+                      resizeMode="contain"
+                    />
+                  </View>
+                  <Text style={styles.categoryName}>{category.name}</Text>
+                </TouchableOpacity>
+              ))}
             </View>
           </ScrollView>
         </View>
@@ -365,7 +348,7 @@ const HomeScreen = ({ navigation }) => {
             <Text style={styles.sectionTitle}>Favourite</Text>
           </View>
 
-          <View style={styles.popularsContainer}>
+          <View style={styles.favouriteContainer}>
             {Object.values(favourite)
               .flat()
               .reduce((acc, curr, index, array) => {

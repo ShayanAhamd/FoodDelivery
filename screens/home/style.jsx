@@ -100,8 +100,8 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   dealImage: {
-    width: 150,
-    height: 150,
+    width: 165,
+    height: 145,
     borderRadius: 10,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
